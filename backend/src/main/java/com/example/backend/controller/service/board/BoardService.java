@@ -17,8 +17,14 @@ public class BoardService {
     final BoardMapper mapper;
 
     public Map<String, Object> add(Board board) {
-        mapper.insert(board);
-        return null;
+        int cnt = mapper.insert(board);
+
+        if (cnt == 1) {
+            return Map.of("message", Map.of("type", "success",
+                    "text", board.getId() + "번 게시물이 등록되었습니다."), "data", board);
+        } else {
+            return null;
+        }
     }
 
     public List<Board> list() {
