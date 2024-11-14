@@ -17,7 +17,7 @@ public interface BoardMapper {
     int insert(Board board);
 
     @Select("""
-            SELECT * 
+            SELECT id, title, content, writer, inserted
             FROM board
             ORDER BY id DESC
             """)
