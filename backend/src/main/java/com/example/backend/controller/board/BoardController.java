@@ -29,3 +29,4 @@ public class BoardController {
         service.add(board);
     }
 }
+

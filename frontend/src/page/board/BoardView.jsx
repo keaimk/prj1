@@ -7,15 +7,12 @@ import { Field } from "../../components/ui/field.jsx";
 export function BoardView() {
   const { id } = useParams();
   const [board, setBoard] = useState(null);
-
   useEffect(() => {
     axios.get(`/api/board/view/${id}`).then((res) => setBoard(res.data));
   }, []);
-
   if (board === null) {
     return <Spinner />;
   }
-
   return (
     <Box>
       <h3>{id} 번 게시물</h3>
