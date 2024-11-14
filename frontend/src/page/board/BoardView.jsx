@@ -3,6 +3,7 @@ import { Box, Input, Spinner, Stack, Textarea } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Field } from "../../components/ui/field.jsx";
+import { Button } from "../../components/ui/button.jsx";
 
 export function BoardView() {
   const { id } = useParams();
@@ -13,6 +14,11 @@ export function BoardView() {
   if (board === null) {
     return <Spinner />;
   }
+
+  const handleDeleteClick = () => {
+    axios.delete(`/api/board/delete/${board.id}`);
+  };
+
   return (
     <Box>
       <h3>{id} 번 게시물</h3>
@@ -29,6 +35,11 @@ export function BoardView() {
         <Field label="작성일시" readOnly>
           <Input value={board.inserted} type={"datetime-local"} />
         </Field>
+        <Box>
+          <Button colorPalette={"red"} onClick={handleDeleteClick}>
+            삭제
+          </Button>
+        </Box>
       </Stack>
     </Box>
   );
