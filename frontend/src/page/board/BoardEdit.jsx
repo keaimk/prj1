@@ -17,14 +17,20 @@ import {
 
 export function BoardEdit() {
   const [board, setBoard] = useState(null);
+  const [progress, setProgress] = useState(false);
   const { id } = useParams();
 
   useEffect(() => {
     axios.get(`/api/board/view/${id}`).then((res) => setBoard(res.data));
   }, []);
+
   const handleSaveClick = () => {
-    axios.put("/api/board/update", board);
+    setProgress(true);
+    axios.put("/api/board/update", board).finally(() => {
+      setProgress(false);
+    });
   };
+
   if (board === null) {
     return <Spinner />;
   }
@@ -63,7 +69,11 @@ export function BoardEdit() {
                 <DialogActionTrigger>
                   <Button variant={"outline"}>취소</Button>
                 </DialogActionTrigger>
-                <Button colorPalette={"blue"} onClick={handleSaveClick}>
+                <Button
+                  loading={progress}
+                  colorPalette={"blue"}
+                  onClick={handleSaveClick}
+                >
                   저장
                 </Button>
               </DialogFooter>
