@@ -20,6 +20,7 @@ export function BoardEdit() {
   const [board, setBoard] = useState(null);
   const [progress, setProgress] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
+
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -29,6 +30,7 @@ export function BoardEdit() {
 
   const handleSaveClick = () => {
     setProgress(true);
+
     axios
       .put("/api/board/update", board)
       .then((res) => res.data)
@@ -51,6 +53,11 @@ export function BoardEdit() {
         setDialogOpen(false);
       });
   };
+
+  // 제목이나 본문이 비어있는 지 확인
+  const disabled = !(
+    board.title.trim().length > 0 && board.content.trim().length > 0
+  );
 
   if (board === null) {
     return <Spinner />;
@@ -78,7 +85,11 @@ export function BoardEdit() {
             onOpenChange={(e) => setDialogOpen(e.open)}
           >
             <DialogTrigger asChild>
-              <Button colorPalette={"cyan"} variant={"outline"}>
+              <Button
+                disabled={disabled}
+                colorPalette={"cyan"}
+                variant={"outline"}
+              >
                 저장
               </Button>
             </DialogTrigger>
