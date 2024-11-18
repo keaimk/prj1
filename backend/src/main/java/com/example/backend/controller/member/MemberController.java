@@ -17,6 +17,11 @@ public class MemberController {
 
     final MemberService service;
 
+    @GetMapping("${id")
+    public Member getMember(@PathVariable String id) {
+        return service.get(id);
+    }
+
     @GetMapping("list")
     public List<Member> list() {
         return service.list();
