@@ -60,6 +60,7 @@ export function MemberSignup() {
           type: message.type,
           description: message.text,
         });
+
         setIdCheck(data.available);
       });
   };
@@ -78,6 +79,7 @@ export function MemberSignup() {
           type: message.type,
           description: message.text,
         });
+
         setEmailCheck(data.available);
       });
   };
