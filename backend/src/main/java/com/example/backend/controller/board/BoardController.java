@@ -59,7 +59,7 @@ public class BoardController {
             @RequestParam(value = "sk", defaultValue = "") String keyword) {
         System.out.println(searchType);
         System.out.println(keyword);
-        return service.list(page);
+        return service.list(page, searchType, keyword);
     }
 
     @PostMapping("add")
