@@ -1,5 +1,6 @@
 package com.example.backend.controller.member;
 
+import com.example.backend.controller.service.member.MemberService;
 import com.example.backend.dto.member.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,8 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RequestMapping("/api/member")
 public class MemberController {
+
+    final MemberService service;
+
     @PostMapping("signup")
     public void signup(@RequestBody Member member) {
-        System.out.println(member);
+        service.add(member);
     }
 }
