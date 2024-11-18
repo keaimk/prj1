@@ -8,3 +8,10 @@ CREATE TABLE member
 );
 SELECT *
 FROM member;
+
+DROP TABLE member;
+
+ALTER TABLE member
+    ADD COLUMN email VARCHAR(300) UNIQUE AFTER id;
+
+DESCRIBE member;
