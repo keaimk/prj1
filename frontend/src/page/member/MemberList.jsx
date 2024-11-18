@@ -12,7 +12,7 @@ export function MemberList() {
     axios.get("/api/member/list").then((res) => setMemberList(res.data));
   }, []);
 
-  // 테이블 행 클릭시 회원 정보 보기로 이동
+  // 테이블 행 클릭시 회원정보보기로 이동
   function handleRowClick(id) {
     navigate(`/member/${id}`);
   }

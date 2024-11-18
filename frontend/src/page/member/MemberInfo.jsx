@@ -1,4 +1,4 @@
-import { Box, Spinner, Stack } from "@chakra-ui/react";
+import { Box, Input, Spinner, Stack, Textarea } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -9,8 +9,8 @@ export function MemberInfo() {
   const { id } = useParams();
 
   useEffect(() => {
-    // 회원 정보 얻기
-    axios.get(`api/member/${id}`).then((res) => setMember(res.data));
+    // 회원정보 얻기
+    axios.get(`/api/member/${id}`).then((res) => setMember(res.data));
   }, []);
 
   if (!member) {
@@ -24,18 +24,14 @@ export function MemberInfo() {
         <Field label={"아이디"}>
           <Input readOnly value={member.id} />
         </Field>
-        <Field label={"암호"}
+        <Field label={"암호"}>
           <Input readOnly value={member.password} />
         </Field>
         <Field label={"자기소개"}>
-          <Input readOnly value={member.description} />
+          <Textarea readOnly value={member.description} />
         </Field>
         <Field label={"가입일시"}>
-          <Input
-            type={"local-datatime-local"}
-            readOnly
-            value={member.inserted}
-          />
+          <Input type={"datetime-local"} readOnly value={member.inserted} />
         </Field>
       </Stack>
     </Box>
