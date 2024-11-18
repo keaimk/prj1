@@ -163,7 +163,6 @@ export function MemberSignup() {
             onChange={(e) => setDescription(e.target.value)}
           />
         </Field>
-
         <Box>
           <Button disabled={disabled} onClick={handleSaveClick}>
             가입
