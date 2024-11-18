@@ -22,7 +22,7 @@ public interface MemberMapper {
     Member selectById(String id);
 
     @Select("""
-            SELECT id, inserted
+            SELECT id, email, inserted
             FROM member
             ORDER BY id
             """)
