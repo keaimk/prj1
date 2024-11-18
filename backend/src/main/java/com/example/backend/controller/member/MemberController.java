@@ -2,6 +2,7 @@ package com.example.backend.controller.member;
 
 import com.example.backend.controller.service.member.MemberService;
 import com.example.backend.dto.member.Member;
+import com.example.backend.dto.member.MemberEdit;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,11 @@ import java.util.Map;
 public class MemberController {
 
     final MemberService service;
+
+    @PutMapping("update")
+    public void update(@RequestBody MemberEdit member) {
+        service.update(member);
+    }
 
     @DeleteMapping("remove")
     public ResponseEntity<Map<String, Object>> remove(@RequestBody Member member) {
