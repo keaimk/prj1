@@ -10,25 +10,16 @@ export function BoardAdd() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [progress, setProgress] = useState(false);
-
   const navigate = useNavigate();
 
   const handleSaveClick = () => {
     setProgress(true);
 
     axios
-      .post(
-        "/api/board/add",
-        {
-          title,
-          content,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        },
-      )
+      .post("/api/board/add", {
+        title,
+        content,
+      })
       .then((res) => res.data)
       .then((data) => {
         const message = data.message;
@@ -54,6 +45,7 @@ export function BoardAdd() {
   };
 
   const disabled = !(title.trim().length > 0 && content.trim().length > 0);
+
   return (
     <Box>
       <h3>게시물 작성</h3>
