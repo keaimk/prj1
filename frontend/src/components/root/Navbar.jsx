@@ -6,7 +6,9 @@ import { AuthenticationContext } from "../context/AuthenticationProvider.jsx";
 export function Navbar() {
   const navigate = useNavigate();
   // step 2 : context 사용하기
-  const authentication = useContext(AuthenticationContext);
+  const { id, isAdmin, isAuthenticated, logout } = useContext(
+    AuthenticationContext,
+  );
   return (
     <Flex gap={3}>
       <Box onClick={() => navigate("/")}>HOME</Box>
