@@ -4,6 +4,7 @@ import com.example.backend.controller.service.board.BoardService;
 import com.example.backend.dto.board.Board;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
@@ -64,9 +65,9 @@ public class BoardController {
     }
 
     @PostMapping("add")
+    @PreAuthorize("isAuthenticated()")
     public ResponseEntity<Map<String, Object>> add(@RequestBody Board board,
                                                    Authentication authentication) {
-
         if (service.validate(board)) {
             if (service.add(board, authentication)) {
                 return ResponseEntity.ok()
