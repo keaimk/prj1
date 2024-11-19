@@ -4,13 +4,17 @@ import com.example.backend.controller.service.member.MemberService;
 import com.example.backend.dto.member.Member;
 import com.example.backend.dto.member.MemberEdit;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/member")
@@ -21,13 +25,13 @@ public class MemberController {
     @PostMapping("login")
     public ResponseEntity<Map<String, Object>> login(@RequestBody Member member) {
         String token = service.token(member);
-
         if (token != null) {
-//            로그인 성공
+            // 로그인 성공
             return ResponseEntity.ok(Map.of("token", token,
-                    "message", Map.of("type", "success", "text", "로그인 되었습니다.")));
+                    "message", Map.of("type", "success",
+                            "text", "로그인 되었습니다.")));
         } else {
-//            로그인 실패
+            // 로그인 실패
             return ResponseEntity.status(401)
                     .body(Map.of("message", Map.of("type", "warning",
                             "text", "아이디와 암호를 확인해주세요.")));
@@ -35,7 +39,7 @@ public class MemberController {
     }
 
     @PutMapping("update")
-    public ResponseEntity<Map<String, Map<String, String>>> update(@RequestBody MemberEdit member) {
+    public ResponseEntity<Map<String, Object>> update(@RequestBody MemberEdit member) {
         if (service.update(member)) {
             //잘됨
             return ResponseEntity.ok(Map.of("message",
@@ -65,8 +69,13 @@ public class MemberController {
     }
 
     @GetMapping("{id}")
-    public Member getMember(@PathVariable String id) {
-        return service.get(id);
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<Member> getMember(@PathVariable String id, Authentication auth) {
+        if (service.hasAccess(id, auth)) {
+            return ResponseEntity.ok(service.get(id));
+        } else {
+            return ResponseEntity.status(403).build();
+        }
     }
 
     @GetMapping("list")
