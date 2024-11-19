@@ -118,7 +118,7 @@ export function MemberEdit() {
             <Input
               value={email}
               onChange={(e) => {
-                setEmail(e.target.value);
+                s;
                 const emptyEmail = e.target.value.length === 0;
                 const sameEmail = e.target.value === member.email;
                 if (emptyEmail || sameEmail) {

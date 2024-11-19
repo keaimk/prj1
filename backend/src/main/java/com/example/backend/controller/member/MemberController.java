@@ -18,6 +18,15 @@ public class MemberController {
 
     final MemberService service;
 
+    @PostMapping("login")
+    public void login(@RequestBody Member member) {
+        String token = service.token(member);
+
+        if (token != null) {
+        } else {
+        }
+    }
+
     @PutMapping("update")
     public ResponseEntity<Map<String, Map<String, String>>> update(@RequestBody MemberEdit member) {
         if (service.update(member)) {
