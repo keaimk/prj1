@@ -126,7 +126,7 @@ export function BoardList() {
       ) : (
         <p>조회된 결과가 없습니다.</p>
       )}
-
+      k
       <HStack>
         <Box>
           <select
@@ -146,7 +146,6 @@ export function BoardList() {
         />
         <Button onClick={handleSearchClick}>검색</Button>
       </HStack>
-
       <PaginationRoot
         onPageChange={handlePageChange}
         count={count}
