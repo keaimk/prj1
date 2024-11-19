@@ -29,7 +29,9 @@ export function Navbar() {
           로그아웃
         </Box>
       )}
-      <Box onClick={() => navigate("/member/list")}>회원목록</Box>
+      {authentication.isAdmin && (
+        <Box onClick={() => navigate("/member/list")}>회원목록</Box>
+      )}
       <Box>{authentication.id}</Box>
     </Flex>
   );
