@@ -14,3 +14,5 @@ DESC member;
 
 SHOW CREATE TABLE auth;
 SHOW CREATE TABLE member;
+SELECT *
+FROM auth;
