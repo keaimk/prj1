@@ -32,7 +32,7 @@ export function Navbar() {
         </Box>
       )}
       {isAdmin && <Box onClick={() => navigate("/member/list")}>회원목록</Box>}
-      <Box>{id}</Box>
+      <Box onClick={() => navigate(`/member/${id}`)}>{id}</Box>
     </Flex>
   );
 }
