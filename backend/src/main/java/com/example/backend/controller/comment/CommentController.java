@@ -18,6 +18,21 @@ public class CommentController {
 
     final CommentService service;
 
+    @PutMapping("edit")
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<Map<String, Object>> edit(@RequestBody Comment comment) {
+        if (service.update(comment)) {
+            return ResponseEntity.ok().body(Map.of("message",
+                    Map.of("type", "success",
+                            "text", "댓글이 수정되었습니다.")));
+        } else {
+
+            return ResponseEntity.internalServerError().body(Map.of("message",
+                    Map.of("type", "error",
+                            "text", "댓글이 수정되지 않았습니다.")));
+        }
+    }
+
     @DeleteMapping("remove/{id}")
     @PreAuthorize("isAuthenticated()")
     public void remove(@PathVariable Integer id, Authentication auth) {
@@ -36,6 +51,7 @@ public class CommentController {
     public ResponseEntity<Map<String, Object>> add(@RequestBody Comment comment, Authentication auth) {
         service.add(comment, auth);
         return ResponseEntity.ok().body(Map.of("message",
-                Map.of("type", "success", "text", "댓글이 등록되었습니다.")));
+                Map.of("type", "success",
+                        "text", "새 댓글이 등록되었습니다.")));
     }
 }
