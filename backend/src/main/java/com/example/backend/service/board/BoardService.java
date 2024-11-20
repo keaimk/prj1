@@ -1,7 +1,7 @@
-package com.example.backend.controller.service.board;
+package com.example.backend.service.board;
 
-import com.example.backend.controller.mapper.board.BoardMapper;
 import com.example.backend.dto.board.Board;
+import com.example.backend.mapper.board.BoardMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;

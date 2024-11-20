@@ -1,8 +1,8 @@
 package com.example.backend.controller.member;
 
-import com.example.backend.controller.service.member.MemberService;
 import com.example.backend.dto.member.Member;
 import com.example.backend.dto.member.MemberEdit;
+import com.example.backend.service.member.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DuplicateKeyException;

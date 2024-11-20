@@ -1,4 +1,4 @@
-package com.example.backend.controller.mapper.board;
+package com.example.backend.mapper.board;
 
 import com.example.backend.dto.board.Board;
 import org.apache.ibatis.annotations.*;

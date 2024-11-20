@@ -1,7 +1,7 @@
 package com.example.backend.controller.board;
 
-import com.example.backend.controller.service.board.BoardService;
 import com.example.backend.dto.board.Board;
+import com.example.backend.service.board.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;

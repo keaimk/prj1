@@ -16,6 +16,7 @@ import {
   DialogTrigger,
 } from "../../components/ui/dialog.jsx";
 import { AuthenticationContext } from "../../components/context/AuthenticationProvider.jsx";
+import { CommentContainer } from "../../components/comment/CommentContainer.jsx";
 
 export function BoardView() {
   const { id } = useParams();
@@ -101,6 +102,8 @@ export function BoardView() {
           </Box>
         )}
       </Stack>
+      <hr />
+      <CommentContainer boardId={board.id} />
     </Box>
   );
 }

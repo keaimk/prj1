@@ -1,4 +1,4 @@
-package com.example.backend.controller.mapper.member;
+package com.example.backend.mapper.member;
 
 import com.example.backend.dto.member.Member;
 import com.example.backend.dto.member.MemberEdit;
