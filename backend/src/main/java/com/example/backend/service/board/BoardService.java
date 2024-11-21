@@ -35,7 +35,6 @@ public class BoardService {
             // 파일 업로드
             // TODO : local -> aws
             for (MultipartFile file : files) {
-
                 String filePath = STR."C:/Temp/prj1114/\{board.getId()}/\{file.getOriginalFilename()}";
                 try {
                     file.transferTo(new File(filePath));
@@ -64,7 +63,9 @@ public class BoardService {
     }
 
     public Board get(int id) {
-        return mapper.selectById(id);
+        Board board = mapper.selectById(id);
+        board.setFileSrc(mapper.selectFilesByBoardId(id));
+        return board;
     }
 
     public boolean validate(Board board) {
