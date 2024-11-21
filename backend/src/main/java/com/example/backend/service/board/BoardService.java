@@ -42,10 +42,10 @@ public class BoardService {
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-            }
 
-//            board_file 테이블에 파일명 입력
-            mapper.insertFile(board.getId(), file.getOriginalFilename());
+                // board_file 테이블에 파일명 입력
+                mapper.insertFile(board.getId(), file.getOriginalFilename());
+            }
         }
         return cnt == 1;
     }
@@ -59,7 +59,6 @@ public class BoardService {
 
         // 전체 게시물 수
         Integer count = mapper.countAll(searchType, keyword);
-
         return Map.of("list", list,
                 "count", count);
     }
