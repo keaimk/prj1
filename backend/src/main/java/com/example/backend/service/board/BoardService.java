@@ -21,12 +21,8 @@ public class BoardService {
     final BoardMapper mapper;
 
     public boolean add(Board board, MultipartFile[] files, Authentication authentication) {
-
-
         board.setWriter(authentication.getName());
-
         int cnt = mapper.insert(board);
-
         if (files != null && files.length > 0) {
 
             // 폴더 만들기
@@ -46,8 +42,10 @@ public class BoardService {
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-
             }
+
+//            board_file 테이블에 파일명 입력
+            mapper.insertFile(board.getId(), file.getOriginalFilename());
         }
         return cnt == 1;
     }
