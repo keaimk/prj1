@@ -13,6 +13,6 @@ public class Board {
     private String writer;
     private LocalDateTime inserted;
     private Integer countComment;
-    private List<String> fileSrc;
+    private Integer countFile;
     private List<BoardFile> fileList;
 }
