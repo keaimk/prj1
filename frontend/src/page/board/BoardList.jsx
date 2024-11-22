@@ -22,7 +22,7 @@ import { GoHeartFill } from "react-icons/go";
 import { CiHashtag, CiSearch, CiUser } from "react-icons/ci";
 import { IoCalendar } from "react-icons/io5";
 import * as PropTypes from "prop-types";
-import { MyHeading } from "../root/MyHeading.jsx";
+import { MyHeading } from "../../components/root/MyHeading.jsx";
 
 export function BoardList() {
   const [boardList, setBoardList] = useState([]);
