@@ -156,14 +156,30 @@ public class BoardService {
     }
 
     public Map<String, Object> like(Board board, Authentication authentication) {
-        // 이미 좋아요면 삭제
+//        이미 좋아요면 삭제
         int cnt = mapper.deleteLikeByBoardIdAndMemberId(board.getId(), authentication.getName());
-        // 아니면 삽입
+//        아니면 삽입
         if (cnt == 0) {
             mapper.insertLike(board.getId(), authentication.getName());
         }
         int countLike = mapper.countLike(board.getId());
+
         Map<String, Object> result = Map.of("like", (cnt == 0), "count", countLike);
+
+        return result;
+    }
+
+    public Map<String, Object> getLike(int id, Authentication auth) {
+        boolean like = false;
+        if (auth == null) {
+            Map<String, Object> row = mapper.selectLikeByBoardIdAndMemberId(id, auth.getName());
+            if (row != null) {
+                like = true;
+            }
+        }
+        int countLike = mapper.countLike(id);
+
+        Map<String, Object> result = Map.of("like", like, "count", countLike);
         return result;
     }
 }
