@@ -1,4 +1,4 @@
-import { Box, Input, Spinner, Stack, Textarea } from "@chakra-ui/react";
+import { Box, HStack, Input, Spinner, Stack, Textarea } from "@chakra-ui/react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
@@ -22,9 +22,11 @@ export function MemberInfo() {
   const [member, setMember] = useState(null);
   const [password, setPassword] = useState("");
   const [open, setOpen] = useState(false);
+
+  const { hasAccess, logout } = useContext(AuthenticationContext);
+
   const { id } = useParams();
   const navigate = useNavigate();
-  const { hasAccess, logout } = useContext(AuthenticationContext);
 
   useEffect(() => {
     // 회원정보 얻기
@@ -38,7 +40,9 @@ export function MemberInfo() {
       })
       .then((res) => {
         logout();
+
         const message = res.data.message;
+
         toaster.create({
           type: message.type,
           description: message.text,
@@ -71,7 +75,7 @@ export function MemberInfo() {
       }}
     >
       <MyHeading>회원 정보</MyHeading>
-      <HStack gap={5}>
+      <Stack gap={5}>
         <Field label={"아이디"}>
           <Input readOnly value={member.id} />
         </Field>
@@ -82,13 +86,13 @@ export function MemberInfo() {
           <Input readOnly value={member.password} />
         </Field>
         <Field label={"자기소개"}>
-          <Textarea readOnly value={member.description} />
+          <Textarea h={125} readOnly value={member.description} />
         </Field>
         <Field label={"가입일시"}>
           <Input type={"datetime-local"} readOnly value={member.inserted} />
         </Field>
         {hasAccess(id) && (
-          <STack>
+          <HStack>
             <Button onClick={() => navigate(`/member/edit/${id}`)}>수정</Button>
             <DialogRoot open={open} onOpenChange={(e) => setOpen(e.open)}>
               <DialogTrigger asChild>
@@ -119,9 +123,9 @@ export function MemberInfo() {
                 </DialogFooter>
               </DialogContent>
             </DialogRoot>
-          </STack>
+          </HStack>
         )}
-      </HStack>
+      </Stack>
     </Box>
   );
 }
