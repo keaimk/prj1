@@ -75,6 +75,7 @@ export function BoardAdd() {
               css={{ color: file.size > 1024 * 1024 ? "red" : "black" }}
               fontWeight={"bold"}
               me={"auto"}
+              truncate
             >
               {file.name}
             </Text>
