@@ -16,6 +16,7 @@ import {
 } from "../../components/ui/dialog.jsx";
 import { toaster } from "../../components/ui/toaster.jsx";
 import { AuthenticationContext } from "../../components/context/AuthenticationProvider.jsx";
+import { MyHeading } from "../../components/root/MyHeading.jsx";
 
 export function MemberInfo() {
   const [member, setMember] = useState(null);
@@ -63,9 +64,14 @@ export function MemberInfo() {
   }
 
   return (
-    <Box>
-      <h3>회원 정보</h3>
-      <Stack gap={5}>
+    <Box
+      mx={"auto"}
+      w={{
+        md: "500px",
+      }}
+    >
+      <MyHeading>회원 정보</MyHeading>
+      <HStack gap={5}>
         <Field label={"아이디"}>
           <Input readOnly value={member.id} />
         </Field>
@@ -82,7 +88,7 @@ export function MemberInfo() {
           <Input type={"datetime-local"} readOnly value={member.inserted} />
         </Field>
         {hasAccess(id) && (
-          <Box>
+          <STack>
             <Button onClick={() => navigate(`/member/edit/${id}`)}>수정</Button>
             <DialogRoot open={open} onOpenChange={(e) => setOpen(e.open)}>
               <DialogTrigger asChild>
@@ -113,9 +119,9 @@ export function MemberInfo() {
                 </DialogFooter>
               </DialogContent>
             </DialogRoot>
-          </Box>
+          </STack>
         )}
-      </Stack>
+      </HStack>
     </Box>
   );
 }
