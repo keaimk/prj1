@@ -99,7 +99,7 @@ export function BoardView() {
         .catch()
         .finally();
     } else {
-      //   tooltip 보여주기
+      // tooltip 보여주기
       setLikeTooltipOpen(!likeTooltipOpen);
     }
   };
