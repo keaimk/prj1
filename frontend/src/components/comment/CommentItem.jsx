@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, HStack, Textarea } from "@chakra-ui/react";
+import { Box, Flex, Heading, HStack, Textarea, Card } from "@chakra-ui/react";
 import { Button } from "../ui/button.jsx";
 import { useContext, useState } from "react";
 import { AuthenticationContext } from "../context/AuthenticationProvider.jsx";
